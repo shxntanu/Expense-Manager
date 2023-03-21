@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 import 'package:expenseplanner/models/transaction_data.dart';
-import 'package:expenseplanner/models/transaction.dart';
 
 class TransactionInput extends StatefulWidget {
 
