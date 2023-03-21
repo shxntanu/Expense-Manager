@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       create: (context) => TransactionData(),
       child: MaterialApp(
         theme: ThemeData(
+          primaryColor: Colors.white,
           fontFamily: 'Google Sans',
         ),
         initialRoute: Home.id,
