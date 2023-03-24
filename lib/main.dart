@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(
           primaryColor: Colors.white,
-          fontFamily: 'Google Sans',
+          fontFamily: 'San Francisco',
         ),
         initialRoute: Home.id,
         routes: {
