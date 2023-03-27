@@ -28,8 +28,21 @@ class TransactionData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteTransactio (Transaction task) {
+  void deleteTransaction (Transaction task) {
     transactions.remove(task);
     notifyListeners();
+  }
+
+  int totalExpense() {
+    double total = 0;
+    for (var i = 0; i < transactions.length; i++) {
+      if (transactions[i].isExpense) {
+        total -= transactions[i].amount;
+      }
+      else {
+        total += transactions[i].amount;
+      }
+    }
+    return total.toInt();
   }
 }
