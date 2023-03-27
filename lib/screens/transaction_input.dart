@@ -2,34 +2,23 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
+
+import 'package:expenseplanner/models/transaction_data.dart';
 
 bool isNumeric(String s) {
-  if(s == null) {
-    return false;
-  }
   return double.tryParse(s) != null;
 }
 
-class TransactionInput extends StatelessWidget {
+class TransactionInput extends StatefulWidget {
 
   static const String id = 'transaction_input';
 
   @override
-  Widget build(BuildContext context) {
-    return CupertinoApp(
-      theme: CupertinoThemeData(brightness: Brightness.light),
-      home: FromSectionExample(),
-    );
-  }
+  State<TransactionInput> createState() => _TransactionInputState();
 }
 
-class FromSectionExample extends StatefulWidget {
-
-  @override
-  State<FromSectionExample> createState() => _FromSectionExampleState();
-}
-
-class _FromSectionExampleState extends State<FromSectionExample> {
+class _TransactionInputState extends State<TransactionInput> {
   late String title;
 
   late String amount;
@@ -43,7 +32,7 @@ class _FromSectionExampleState extends State<FromSectionExample> {
     showCupertinoModalPopup(
         context: ctx,
         builder: (_) => Container(
-              height: 300,
+              height: 400,
               color: Color.fromARGB(255, 255, 255, 255),
               child: Column(
                 children: [
@@ -57,6 +46,12 @@ class _FromSectionExampleState extends State<FromSectionExample> {
 
                         }),
                   ),
+
+                  CupertinoButton(
+                    child: const Text('OK'),
+                    onPressed: () => Navigator.of(ctx).pop(),
+                  )
+
                 ],
               ),
     ));
@@ -70,6 +65,14 @@ class _FromSectionExampleState extends State<FromSectionExample> {
           padding: EdgeInsetsDirectional.zero,
           child: const Text('Back'),
           onPressed: () => Navigator.pop(context),
+        ),
+        trailing: CupertinoButton(
+          padding: EdgeInsetsDirectional.zero,
+          child: Icon(CupertinoIcons.add),
+          onPressed: () {
+            Provider.of<TransactionData>(context, listen: false).addTransaction(title, amount, IsExpense, _chosenDateTime);
+            Navigator.pop(context);
+          },
         ),
         middle: Text('Add Transaction',
         style: TextStyle(
@@ -107,6 +110,9 @@ class _FromSectionExampleState extends State<FromSectionExample> {
                     return 'Please enter a title';
                   }}
                 },
+                onChanged: (newValue) {
+                  title = newValue;
+                },
               ),
 
               CupertinoTextFormFieldRow(
@@ -120,6 +126,9 @@ class _FromSectionExampleState extends State<FromSectionExample> {
                     if( !isNumeric(value) ){
                     return 'Please enter a valid number';
                   }}
+                },
+                onChanged: (newValue) {
+                  amount = newValue;
                 },
               ),
 
