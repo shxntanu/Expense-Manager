@@ -19,8 +19,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  int monthlyBudget = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +44,7 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
-            ExpenseTracker(amount: 500),
+            ExpenseTracker(amount: Provider.of<TransactionData>(context, listen: true).totalExpense()),
             SizedBox(
                   height: 10,
             ),
@@ -64,7 +62,7 @@ class _HomeState extends State<Home> {
                         key: ValueKey<TransactionWidget>(TransactionWidget(transaction: transactionData.transactions[index])),
                         onDismissed: (DismissDirection direction) {
                           setState(() {
-                            transactionData.deleteTransactio(ttransaction);
+                            transactionData.deleteTransaction(ttransaction);
                           });
                         },
                         background: Container(
