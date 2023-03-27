@@ -21,7 +21,7 @@ class ExpenseTracker extends StatelessWidget {
             child: Text(
               'Spent this month',
               style: TextStyle(
-                fontFamily: 'Google Sans',
+                fontFamily: 'San Francisco',
                 fontSize: 20.0,
                 color: Colors.grey,
               ),
