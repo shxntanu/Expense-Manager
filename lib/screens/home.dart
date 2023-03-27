@@ -38,9 +38,9 @@ class _HomeState extends State<Home> {
                     ),
                   child: IconButton(
                     color: Colors.black,
-                    icon: Icon(Icons.add),
+                    icon: Icon(Icons.add, color: Colors.blue,),
                     onPressed: () {
-                      Navigator.of(context).push(_createRoute());
+                      Navigator.pushNamed(context, TransactionInput.id);
                     }
                   ),
                 ),
@@ -86,20 +86,20 @@ class _HomeState extends State<Home> {
   }
 }
 
-Route _createRoute() {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => TransactionInput(),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(0.0, 1.0);
-      const end = Offset.zero;
-      const curve = Curves.ease;
+// Route _createRoute() {
+//   return PageRouteBuilder(
+//     pageBuilder: (context, animation, secondaryAnimation) => TransactionInput(),
+//     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+//       const begin = Offset(0.0, 1.0);
+//       const end = Offset.zero;
+//       const curve = Curves.ease;
 
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+//       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
-      return SlideTransition(
-        position: animation.drive(tween),
-        child: child,
-      );
-    },
-  );
-}
+//       return SlideTransition(
+//         position: animation.drive(tween),
+//         child: child,
+//       );
+//     },
+//   );
+// }
