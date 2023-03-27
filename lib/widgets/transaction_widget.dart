@@ -39,7 +39,7 @@ class TransactionWidget extends StatelessWidget {
               Text(
                 transaction.title,
                 style: TextStyle(
-                  fontFamily: 'Google Sans',
+                  fontFamily: 'San Francisco',
                   fontSize: 20.0,
                   color: Colors.black,
                 ),
@@ -48,7 +48,7 @@ class TransactionWidget extends StatelessWidget {
               Text(
                 '${transaction.date.day}/${transaction.date.month}',
                 style: TextStyle(
-                  fontFamily: 'Google Sans',
+                  fontFamily: 'San Francisco',
                   fontSize: 15.0,
                   color: Colors.grey,
                 ),
