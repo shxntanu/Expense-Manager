@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +9,7 @@ bool isNumeric(String s) {
 }
 
 class TransactionInput extends StatefulWidget {
+  const TransactionInput({super.key});
 
   static const String id = 'transaction_input';
 
@@ -23,7 +22,7 @@ class _TransactionInputState extends State<TransactionInput> {
 
   late String amount;
 
-  late bool IsExpense = false;
+  late bool isExpense = false;
 
   late DateTime _chosenDateTime;
 
@@ -33,7 +32,7 @@ class _TransactionInputState extends State<TransactionInput> {
         context: ctx,
         builder: (_) => Container(
               height: 400,
-              color: Color.fromARGB(255, 255, 255, 255),
+              color: const Color.fromARGB(255, 255, 255, 255),
               child: Column(
                 children: [
                   SizedBox(
@@ -68,13 +67,13 @@ class _TransactionInputState extends State<TransactionInput> {
         ),
         trailing: CupertinoButton(
           padding: EdgeInsetsDirectional.zero,
-          child: Icon(CupertinoIcons.add),
+          child: const Icon(CupertinoIcons.add),
           onPressed: () {
-            Provider.of<TransactionData>(context, listen: false).addTransaction(title, amount, IsExpense, _chosenDateTime);
+            Provider.of<TransactionData>(context, listen: false).addTransaction(title, amount, isExpense, _chosenDateTime);
             Navigator.pop(context);
           },
         ),
-        middle: Text('Add Transaction',
+        middle: const Text('Add Transaction',
         style: TextStyle(
           color: Colors.black,
           fontFamily: 'San Francisco',
@@ -91,7 +90,7 @@ class _TransactionInputState extends State<TransactionInput> {
 
           },
           child: CupertinoFormSection.insetGrouped(
-            header: Text('ENTER TRANSACTION',
+            header: const Text('ENTER TRANSACTION',
             style: TextStyle(
               fontFamily: 'San Francisco',
             ),
@@ -99,7 +98,7 @@ class _TransactionInputState extends State<TransactionInput> {
             children: <Widget> [
 
               CupertinoTextFormFieldRow(
-                prefix: Text('Title',
+                prefix: const Text('Title',
                 style: TextStyle(
                   fontFamily: 'San Francisco',
                 ),),
@@ -109,6 +108,7 @@ class _TransactionInputState extends State<TransactionInput> {
                     if( value.isEmpty ){
                     return 'Please enter a title';
                   }}
+                  return null;
                 },
                 onChanged: (newValue) {
                   title = newValue;
@@ -116,7 +116,7 @@ class _TransactionInputState extends State<TransactionInput> {
               ),
 
               CupertinoTextFormFieldRow(
-                prefix: Text('Amount',
+                prefix: const Text('Amount',
                 style: TextStyle(
                   fontFamily: 'San Francisco',
                 ),),
@@ -126,6 +126,7 @@ class _TransactionInputState extends State<TransactionInput> {
                     if( !isNumeric(value) ){
                     return 'Please enter a valid number';
                   }}
+                  return null;
                 },
                 onChanged: (newValue) {
                   amount = newValue;
@@ -133,19 +134,19 @@ class _TransactionInputState extends State<TransactionInput> {
               ),
 
               CupertinoFormRow(
-                prefix: Text('Expense',
+                prefix: const Text('Expense',
                 style: TextStyle(
                   fontFamily: 'San Francisco',
                 ),),
                 child: CupertinoSwitch(
-                    value: IsExpense,
-                    onChanged: (bool value) { setState(() { IsExpense = value; }); },
+                    value: isExpense,
+                    onChanged: (bool value) { setState(() { isExpense = value; }); },
                   ),
               ),
 
               CupertinoButton(
                 padding: EdgeInsetsDirectional.zero,
-                child: Text('Show Picker'),
+                child: const Text('Show Picker'),
                 onPressed: () => _showDatePicker(context),
               ),
               
